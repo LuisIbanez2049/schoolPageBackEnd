@@ -43,8 +43,8 @@ public class SchoolpageApplication {
 			//--------------------------------------------------------------------------------------
 
 			//-------------------------------------Materias-------------------------------------------------
-			Materia matematica = new Materia("Matematica", "Estudio del razonamiento lógico y analítico, abordando números, álgebra, geometría y más, para resolver problemas cotidianos y científicos.", "https://cdn-blog.superprof.com/blog_co/wp-content/uploads/2020/10/las-matematicas.jpeg", "#a1d9d9", "1234" );
-			Materia quimica = new Materia("Quimica", "Ciencia que estudia la composición, estructura y transformación de la materia, aplicándose en la salud, industria, medio ambiente y tecnología.", "https://cards.algoreducation.com/_next/image?url=https%3A%2F%2Ffiles.algoreducation.com%2Fproduction-ts%2F__S3__85d3dd80-4e5e-4469-961c-a4b3a1814e27&w=3840&q=75", "#a2b38b", "1234");
+			Materia matematica = new Materia("Mathematics", "Study of logical and analytical reasoning, addressing numbers, algebra, geometry, and more, to solve everyday and scientific problems.", "https://educrea.cl/wp-content/uploads/2021/07/DD-1200x630-5-JULIO.png", "#a1d9d9", "1234" );
+			Materia quimica = new Materia("Chemistry", "Science that studies the composition, structure, and transformation of matter, applied to health, industry, the environment, and technology.", "https://cards.algoreducation.com/_next/image?url=https%3A%2F%2Ffiles.algoreducation.com%2Fproduction-ts%2F__S3__85d3dd80-4e5e-4469-961c-a4b3a1814e27&w=3840&q=75", "#a2b38b", "1234");
 			materiaRepository.save(matematica);
 			materiaRepository.save(quimica);
 			//--------------------------------------------------------------------------------------
@@ -52,8 +52,8 @@ public class SchoolpageApplication {
 
 
 			//-------------------------------------Agrego contenido a las materias-------------------------------------------------
-			Contenido contenido1Matematica = new Contenido("Parabolas", LocalDateTime.now(), "Hablamos sobre como calcular las parabolas");
-			Contenido contenido2Matematica = new Contenido("Polinomios", LocalDateTime.now(), "Calculo de polinomios de 1er a 3er grado");
+			Contenido contenido1Matematica = new Contenido("Parabolas", LocalDateTime.now(), "We talked about how to calculate parabolas");
+			Contenido contenido2Matematica = new Contenido("Polynomials", LocalDateTime.now(), "Calculation of 1st to 3rd degree polynomials");
 
 			matematica.addContenido(contenido1Matematica);
 			matematica.addContenido(contenido2Matematica);
@@ -61,8 +61,8 @@ public class SchoolpageApplication {
 			contenidoRepository.save(contenido2Matematica);
 
 
-			Contenido contenido1Quimica = new Contenido("Gases", LocalDateTime.now(), "Hablamos sobre los tipos de gases");
-			Contenido contenido2Quimica = new Contenido("Estados", LocalDateTime.now(), "Hablamos sobre los distitos estados de la materia");
+			Contenido contenido1Quimica = new Contenido("Gases", LocalDateTime.now(), "We talk about the types of gases");
+			Contenido contenido2Quimica = new Contenido("States", LocalDateTime.now(), "We talk about the different states of matter");
 
 			quimica.addContenido(contenido1Quimica);
 			quimica.addContenido(contenido2Quimica);
@@ -74,7 +74,7 @@ public class SchoolpageApplication {
 
 
 			//-------------------------------------Agrego archivos a las contenidos-------------------------------------------------
-			Archivo archivo1PolinomiosMatematica = new Archivo("Polynomial calculus", "fa-brands fa-youtube", "https://www.youtube.com/watch?v=ueJtyB2Hg2I&ab_channel=Divertim%C3%A1ticas");
+			Archivo archivo1PolinomiosMatematica = new Archivo("Polynomial calculus", "fa-brands fa-youtube", "https://www.youtube.com/watch?v=ffLLmV4mZwU&ab_channel=mathantics");
 			Archivo archivo2PolinomiosMatematica = new Archivo("Homework", "fa-solid fa-image", "https://www.profesor10demates.com/wp-content/uploads/2020/04/Ecuaciones-de-tercer-grado-ejercicios-resueltos.png");
 			contenido2Matematica.addArchivo(archivo1PolinomiosMatematica);
 			contenido2Matematica.addArchivo(archivo2PolinomiosMatematica);
@@ -111,7 +111,7 @@ public class SchoolpageApplication {
 
 
 			//-------------------------------------Agrego comentarios a los contenidos-------------------------------------------------
-			Comentario comentario1MatematicaContenido1 = new Comentario("No me quedo claro el calculo de los parabolas...", LocalDateTime.now());
+			Comentario comentario1MatematicaContenido1 = new Comentario("I'm not clear on the calculation of the parabolas...", LocalDateTime.now());
 			contenido1Matematica.addComentario(comentario1MatematicaContenido1);
 			comentario1MatematicaContenido1.setContenido(contenido1Matematica);
 			luis.addComentario(comentario1MatematicaContenido1);
@@ -120,7 +120,7 @@ public class SchoolpageApplication {
 			comentarioRepository.save(comentario1MatematicaContenido1);
 
 
-			Comentario comentario1MatematicaContenido2 = new Comentario("No me quedo claro el calculo de los polinomios...", LocalDateTime.now());
+			Comentario comentario1MatematicaContenido2 = new Comentario("I'm not clear on the calculation of the polynomials...", LocalDateTime.now());
 			contenido2Matematica.addComentario(comentario1MatematicaContenido2);
 			comentario1MatematicaContenido2.setContenido(contenido2Matematica);
 			luis.addComentario(comentario1MatematicaContenido2);
@@ -129,7 +129,7 @@ public class SchoolpageApplication {
 			comentarioRepository.save(comentario1MatematicaContenido2);
 
 
-			Comentario comentario1QuimicaContenido1 = new Comentario("No me quedo claro el tema de los gases...", LocalDateTime.now());
+			Comentario comentario1QuimicaContenido1 = new Comentario("I'm not clear on the gas issue...", LocalDateTime.now());
 			contenido1Quimica.addComentario(comentario1QuimicaContenido1);
 			comentario1QuimicaContenido1.setContenido(contenido1Quimica);
 			luis.addComentario(comentario1QuimicaContenido1);
@@ -137,7 +137,7 @@ public class SchoolpageApplication {
 			usuarioRepository.save(luis);
 			comentarioRepository.save(comentario1QuimicaContenido1);
 
-			Comentario comentario1QuimicaContenido2 = new Comentario("No me quedo claro el tema de los ESTADOS...", LocalDateTime.now());
+			Comentario comentario1QuimicaContenido2 = new Comentario("I'm not clear on the STATES issue...", LocalDateTime.now());
 			contenido2Quimica.addComentario(comentario1QuimicaContenido2);
 			comentario1QuimicaContenido2.setContenido(contenido2Quimica);
 			tony.addComentario(comentario1QuimicaContenido2);
@@ -148,7 +148,7 @@ public class SchoolpageApplication {
 
 
 			//-------------------------------------Agrego respuestas a los comentarios-------------------------------------------------
-			Respuesta respuesta1Comentario1QuimicaContenido1 = new Respuesta("Te explico, cuando tienes...", LocalDateTime.now());
+			Respuesta respuesta1Comentario1QuimicaContenido1 = new Respuesta("I'll explain, when you have...", LocalDateTime.now());
 			comentario1QuimicaContenido1.addRespuesta(respuesta1Comentario1QuimicaContenido1);
 			respuesta1Comentario1QuimicaContenido1.setComentario(comentario1QuimicaContenido1);
 			antonio.addRespuesta(respuesta1Comentario1QuimicaContenido1);
@@ -158,7 +158,7 @@ public class SchoolpageApplication {
 			respuestaRepository.save(respuesta1Comentario1QuimicaContenido1);
 
 
-			Respuesta respuesta1Comentario1MatematicaContenido2 = new Respuesta("Para llegar a la respuesta debes...", LocalDateTime.now());
+			Respuesta respuesta1Comentario1MatematicaContenido2 = new Respuesta("To get to the answer you must...", LocalDateTime.now());
 			comentario1MatematicaContenido2.addRespuesta(respuesta1Comentario1MatematicaContenido2);
 			respuesta1Comentario1MatematicaContenido2.setComentario(comentario1MatematicaContenido2);
 			tony.addRespuesta(respuesta1Comentario1MatematicaContenido2);
@@ -168,7 +168,7 @@ public class SchoolpageApplication {
 			respuestaRepository.save(respuesta1Comentario1MatematicaContenido2);
 
 
-			Respuesta respuesta2Comentario1MatematicaContenido2 = new Respuesta("Ahora entiendo, gracias...", LocalDateTime.now());
+			Respuesta respuesta2Comentario1MatematicaContenido2 = new Respuesta("Now I understand, thanks...", LocalDateTime.now());
 			comentario1MatematicaContenido2.addRespuesta(respuesta2Comentario1MatematicaContenido2);
 			respuesta2Comentario1MatematicaContenido2.setComentario(comentario1MatematicaContenido2);
 			luis.addRespuesta(respuesta2Comentario1MatematicaContenido2);
