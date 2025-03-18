@@ -2,10 +2,7 @@ package com.eschool.schoolpage.controllers;
 
 import com.eschool.schoolpage.dtos.*;
 import com.eschool.schoolpage.models.*;
-import com.eschool.schoolpage.repositories.ArchivoRepository;
-import com.eschool.schoolpage.repositories.ContenidoRepository;
-import com.eschool.schoolpage.repositories.MateriaRepository;
-import com.eschool.schoolpage.repositories.UsuarioRepository;
+import com.eschool.schoolpage.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
@@ -32,6 +29,9 @@ public class ContenidoController {
 
     @Autowired
     private ArchivoRepository archivoRepository;
+
+    @Autowired
+    private NotificacionRepository notificacionRepository;
 
     @GetMapping("/")
     public ResponseEntity<?> getAllContenidos(Authentication authentication){
@@ -110,6 +110,17 @@ public class ContenidoController {
                 Contenido newContenido = new Contenido(recordCrearContenido.titulo(), LocalDateTime.now(), recordCrearContenido.detalleContenido());
                 materia.addContenido(newContenido);
                 contenidoRepository.save(newContenido);
+
+                List<UsuarioMateria> usuarioMateriasAlumnos = materia.getUsuarioMaterias();
+                for (UsuarioMateria usuarioMateria : usuarioMateriasAlumnos){
+                    if (usuarioMateria.getUsuario().getRol().equals(Rol.ESTUDIANTE)) {
+                        Notificacion notificacion = new Notificacion(usuario.getName() + " " + usuario.getLastName(), usuario.getProfileUserImage(), "has commented",
+                                "A new content has been published: \n" + recordCrearContenido.titulo(), materia.getNombre(), recordCrearContenido.titulo(), newContenido.getFechaDePublicacion());
+                        notificacion.setUsuario(usuarioMateria.getUsuario());
+                        usuarioMateria.getUsuario().addNotificacion(notificacion);
+                        notificacionRepository.save(notificacion);
+                    }
+                }
                 return new ResponseEntity<>("CONTENIDO CREADO CON EXITO SIN ARCHIVOS", HttpStatus.OK);
             }
 
@@ -125,6 +136,17 @@ public class ContenidoController {
                     archivoRepository.save(archivo);
                 }
             } else { return new ResponseEntity<>("THERE ISN´T FILES", HttpStatus.OK); }
+
+            List<UsuarioMateria> usuarioMateriasAlumnos = materia.getUsuarioMaterias();
+            for (UsuarioMateria usuarioMateria : usuarioMateriasAlumnos){
+                if (usuarioMateria.getUsuario().getRol().equals(Rol.ESTUDIANTE)) {
+                    Notificacion notificacion = new Notificacion(usuario.getName() + " " + usuario.getLastName(), usuario.getProfileUserImage(), "has commented",
+                            "A new content has been published: \n\n" + recordCrearContenido.titulo(), materia.getNombre(), recordCrearContenido.titulo(), newContenido.getFechaDePublicacion());
+                    notificacion.setUsuario(usuarioMateria.getUsuario());
+                    usuarioMateria.getUsuario().addNotificacion(notificacion);
+                    notificacionRepository.save(notificacion);
+                }
+            }
 
             return new ResponseEntity<>("CONTENIDO CREADO CON EXITO CON ARCHIVOS", HttpStatus.OK);
 
